@@ -31,4 +31,11 @@ Route::middleware('auth')
         Route::get('/', 'PageController@dashboard')
         ->name('home');
         Route::resource('posts', 'PostController');
-   });
+});
+
+
+Route::get('/categories/{category}', 'CategoryController@slug')->name('categories.slug');
+
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where("any", ".*")->name('guest.home');
